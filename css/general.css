@@ -1,0 +1,63 @@
+/*
+ * Generic CSS settings for border layout,
+ * corporate identity, etc.
+ */
+:root {
+	--normal-font-family: sans-serif;
+	--corporate-logo-uri: "image/figd-logo.png";
+	--corporate-division-color: ivory;
+	--corporate-heavy-red: #9C000B;
+	--corporate-light-red: #FCE1E1;
+}
+
+
+body {
+	font-family: var(--normal-font-family);
+
+	h1,h2,h3,h4,h5,h6 {
+		color: var(--corporate-heavy-red);
+		margin: 0px;
+	}
+
+	ul,ol {
+		margin-top: 0px;
+	}
+
+	nav,span,label {
+		display: inline-block;
+	}
+
+	table {
+		border-collapse: collapse;
+
+		tr,th,td {
+			border-width: 1px;
+		}
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	main {
+		display: flex;
+
+		article.left,article.right {
+			width: 5rem;
+		}
+
+		article.center {
+			width: 100%;
+		}
+	}
+
+	footer {
+		input.message.success {
+			color: green;
+		}
+
+		input.message.failure {
+		color: red;
+		} 
+	}
+}

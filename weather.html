@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="dcterms.rightsHolder" content="Sascha Baumeister" />
+		<meta name="dcterms.rights" content="all rights reserved" />
+		<meta name="dcterms.dateCopyrighted" content="2024" />
+		<meta charset="utf-8" />
+
+		<title>Weather App</title>
+		<link rel="icon" type="image/jpeg" href="image/weather.png" />
+		<link rel="stylesheet" type="text/css" href="css/general.css" />
+		<link rel="stylesheet" type="text/css" href="css/weather.css" />
+		<script type="module" async="true" src="script/weather.js"></script>
+		
+		<template class="weather-overview">
+			<section class="weather-overview">
+				<div class="data"></div>
+					<h1>Übersicht</h1>
+					<div class="table">
+						<table>
+							<thead>
+								<tr>
+									<th>Datum</th>
+									<th>Temperatur</th>
+									<th>Regen (mm/m&sup2;)</th>
+									<th>Luftfeuchte</th>
+									<th>Luftdruck (hPa)</th>
+									<th>Sicht (m)</th>
+								</tr>
+							</thead>
+							<tbody></tbody>  
+						</table>
+					</div>
+
+			</section>
+		</template>
+		
+		<template class="weather-overview-row">
+			<tr>
+				<td class="date"><button type="button"></button></td>
+				<td class="temperature"></td>
+				<td class="rain"></td>
+				<td class="humidity"></td>
+				<td class="pressure"></td>
+				<td class="visibility"></td>
+			</tr>
+		</template>
+		
+		<template class="weather-details">
+			<section class="weather-details">
+
+			</section>
+		</template>
+		<template class="weather-details">
+			<section class="weather-details">
+
+			</section>
+		</template>
+		
+	</head>
+
+	<body>
+		<header>
+			<nav></nav>
+			<img class="logo" src="image/figd-logo.png" />
+		</header>
+
+		<main>
+			<article class="left hidden"></article>
+			<article class="center">
+				<section class="location">
+					<div class="filter">
+						<h1>Suchkriterien</h1>
+						<span>
+							<label>Stadt</label>
+							<input type=""text" class="city" value="Berlin" />
+						</span>
+						<span>
+							<label>Staat</label>
+							<input type=""text" class="country" value="DE" minlength="2" maxlength="2"/>
+						</span>
+						<span>
+							<button type="button" class="query">suchen</button>
+						</span>
+					
+					
+					
+					</div>
+
+				</section>
+				
+				
+			</article>
+			<article class="right hidden"></article>
+		</main>
+
+		<footer>
+			<label>Nachricht</label>
+			<input type="text" class="message" readonly="true"/>
+		</footer>
+	</body>
+</html>

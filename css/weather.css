@@ -1,0 +1,29 @@
+body {
+	header {
+		background-color: black;
+		display: flex;
+
+		nav {
+			width: 100%;
+		}
+
+		img.logo {
+			height: 2rem;
+		}
+	}
+
+	article.center {
+		section>div {
+			padding: 0rem 0.1rem;
+			margin-top: 0.25rem;
+			background-color: var(--corporate-division-color);
+		}
+
+		section.location {
+				input.country {
+					width:1.5rem};
+			{
+			}
+		}
+	}
+}
