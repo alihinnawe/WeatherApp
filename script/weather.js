@@ -1,4 +1,4 @@
-const OPEN_WEATHER_APP_KEY = "your key";
+const OPEN_WEATHER_APP_KEY = "65d8e433543028fb83bd8709bebfad8f";
 const OPEN_WEATHER_APP_ORIGIN = "https://api.openweathermap.org";
 
 /**
@@ -29,7 +29,7 @@ async function processWeatherForecast () {
 		//console.log(location)
 		
 		const weatherForecast = await invokeQueryWeatherForecast(location.lat, location.lon);
-		console.log("weatherForecast",weatherForecast.list[0]);
+		console.log("weatherForecast",weatherForecast);
 	
 		let overviewSection = center.querySelector("section.weather-overview");
 		if (!overviewSection) {
@@ -45,21 +45,27 @@ async function processWeatherForecast () {
 		const dayForecast = {dateText: null, list: [] };
 		weatherForecast.list.push(null);
 		for (const threeHourForecast of weatherForecast.list) {
+			
 			const dateText = threeHourForecast 
 			? threeHourForecast.dt_txt.substring(0, threeHourForecast.dt_txt.indexOf(' ')) : null;
-			console.log("dateText",dateText);	
 			if(dayForecast.dateText === dateText){
 				dayForecast.list.push(threeHourForecast)}
 				else {
 					if(dayForecast.dateText !== null) {
 						const tableRow = tableRowTemplate.content.firstElementChild.cloneNode(true);
 						tableBody.append(tableRow);
+						
+						const minTemperature = dayForecast.list.reduce((acc,value) => Math.min(acc,value.main.temp_min), Infinity) - 273.15;
+						const maxTemperature = dayForecast.list.reduce((acc,value) => Math.max(acc,value.main.temp_max), 0) - 273.15;
+						
 						tableRow.querySelector("td.date>button").innerText = new Date(dayForecast.list[0].dt * 1000).toLocaleDateString();
+						tableRow.querySelector("td.temperature").innerText = Math.round(minTemperature.toString()) + ", " + Math.round(maxTemperature.toString());	
 					}
 					
 					dayForecast.dateText = dateText;
 					dayForecast.list = [threeHourForecast];
 			}
+			
 		}
 
 		messageOutput.value = "ok.";
