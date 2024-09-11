@@ -1,6 +1,6 @@
 const OPEN_WEATHER_APP_KEY = "your key";
 const OPEN_WEATHER_APP_ORIGIN = "https://api.openweathermap.org";
-
+let test;
 /**
  * Registers the basic event listeners, initiating// constants
 
