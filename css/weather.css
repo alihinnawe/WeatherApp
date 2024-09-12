@@ -26,7 +26,22 @@ body {
 		}
 		
 		section.weather-overview {
-			table>tbody {
+			table {
+				
+				th {
+					border-bottom-style: solid;
+					background-color: var(--corporate-light-red);
+				}
+
+				th,td {
+					padding: 0px 2px;
+					
+				}
+
+				th:not(:first-of-type),td:not(:first-of-type) {
+					border-left-style: solid;
+				}
+				
 				td.temperature,td.visibility {
 					text-align: center;
 				}

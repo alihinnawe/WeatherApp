@@ -75,11 +75,11 @@ async function processWeatherForecast () {
 
 					// Update table row with date and temperature range
 					tableRow.querySelector("td.date>button").innerText = new Date(dayThreeHourForecasts[0].dt * 1000).toLocaleDateString();
-					tableRow.querySelector("td.temperature").innerText = Math.round(minTemperature) + "° - " + Math.round(maxTemperature) + "°"; 
-					tableRow.querySelector("td.rain").innerText = Math.round(rain).toString(); 
+					tableRow.querySelector("td.temperature").innerText = Math.round(minTemperature) + "°C - " + Math.round(maxTemperature) + "°C"; 
+					tableRow.querySelector("td.rain").innerText = Math.round(rain).toString() + "mm/m²"; 
 					tableRow.querySelector("td.humidity").innerText = Math.round(humidity).toString() + "%"; 
-					tableRow.querySelector("td.pressure").innerText = Math.round(humidity).toString();
-					tableRow.querySelector("td.visibility").innerText = Math.round(minVisisbility) + "m - " + Math.round(maxVisisbility) + "m"; 
+					tableRow.querySelector("td.pressure").innerText = Math.round(humidity).toString() + " hPa";
+					tableRow.querySelector("td.visibility").innerText = Math.round(minVisisbility) + " - " + Math.round(maxVisisbility); 
 				}
 
 				// Start new forecast grouping
