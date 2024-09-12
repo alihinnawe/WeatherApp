@@ -65,6 +65,7 @@ async function processWeatherForecast () {
 
 					// Calculate minimum and maximum temperatures
 					const dayThreeHourForecasts = dayForecast.list;
+					const date = new Date(dayThreeHourForecasts[0].dt * 1000);
 					const minTemperature = dayThreeHourForecasts.reduce((acc, element) => Math.min(acc, element.main.temp_min), Infinity) - 273.15;
 					const maxTemperature = dayThreeHourForecasts.reduce((acc, element) => Math.max(acc, element.main.temp_max), 0) - 273.15;
 					const rain = dayThreeHourForecasts.reduce((acc, element) => acc + (element.rain ? element.rain["3h"] : null),0);
@@ -74,13 +75,14 @@ async function processWeatherForecast () {
 					const maxVisisbility = dayThreeHourForecasts.reduce((acc, element) => Math.max(acc, element.visibility), 0);
 
 					// Update table row with date and temperature range
-					tableRow.querySelector("td.date>button").innerText = new Date(dayThreeHourForecasts[0].dt * 1000).toLocaleDateString();
+					const dateButton = tableRow.querySelector("td.date>button");
+					dateButton.innerText = date.toLocaleDateString();
 					tableRow.querySelector("td.temperature").innerText = Math.round(minTemperature) + "°C - " + Math.round(maxTemperature) + "°C"; 
 					tableRow.querySelector("td.rain").innerText = Math.round(rain).toString() + "mm/m²"; 
 					tableRow.querySelector("td.humidity").innerText = Math.round(humidity).toString() + "%"; 
 					tableRow.querySelector("td.pressure").innerText = Math.round(humidity).toString() + " hPa";
 					tableRow.querySelector("td.visibility").innerText = Math.round(minVisisbility) + " - " + Math.round(maxVisisbility); 
-					tableRow.querySelector("td.date>button").addEventListener("click", event => processDayWeatherForecast(dayThreeHourForecasts));
+					dateButton.addEventListener("click", event => processDayWeatherForecast(date, dayThreeHourForecasts));
 
 				}
 
@@ -105,9 +107,10 @@ async function processWeatherForecast () {
 
 /**
  * Processes a detailed daily weather forecast.
+ * @param date the start timestamp of the day
  * @param threeHoursForecast the three hours forecast für einem TAG.
  */   
-async function processDayWeatherForecast (threeHourForcasts) {
+async function processDayWeatherForecast (date, threeHourForcasts) {
 	// Get reference to the message output element
 	const messageOutput = document.querySelector("footer>input.message");
 	messageOutput.classList.remove("success", "failure");
@@ -120,7 +123,10 @@ async function processDayWeatherForecast (threeHourForcasts) {
 		const center = document.querySelector("article.center");
 		center.querySelector("section.location").classList.add("hidden");
 		center.querySelector("section.weather-overview").classList.add("hidden");
-
+		
+		const detailsSectionTemplate = document.querySelector("head>template.weather-details");
+		const detailsSection = detailsSectionTemplate.content.firstElementChild.cloneNode(true); 
+			center.append(detailsSection);
 		
 	} catch (error) { 
 		// Update the message output to indicate failure
