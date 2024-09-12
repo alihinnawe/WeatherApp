@@ -25,5 +25,22 @@ body {
 			{
 			}
 		}
-	}
+		
+		section.weather-overview {
+				table>tbody {
+					td.temperature {
+					text-align: center;
+					};
+			
+			}
+		}		
+		section.weather-overview {
+					table>tbody {
+						td.rain,td.humidity,td.pressure {
+						text-align: right;
+						};
+				
+				}
+			}		
+	
 }
