@@ -116,18 +116,25 @@ async function processDayWeatherForecast (date, threeHourForcasts) {
 	messageOutput.classList.remove("success", "failure");
 
 	try {
-		console.log("threeHourForcasts",threeHourForcasts);
-		// Update the message output to indicate success
-		messageOutput.value = "ok.";
-		messageOutput.classList.add("success");
 		const center = document.querySelector("article.center");
 		center.querySelector("section.location").classList.add("hidden");
 		center.querySelector("section.weather-overview").classList.add("hidden");
 		
 		const detailsSectionTemplate = document.querySelector("head>template.weather-details");
 		const detailsSection = detailsSectionTemplate.content.firstElementChild.cloneNode(true); 
-			center.append(detailsSection);
-		
+		center.append(detailsSection);
+
+
+		detailsSection.querySelector("output.date").value = date.toLocaleDateString('de-DE',{
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+		// Update the message output to indicate success
+		messageOutput.value = "ok.";
+		messageOutput.classList.add("success");
 	} catch (error) { 
 		// Update the message output to indicate failure
 		messageOutput.value = error.message;

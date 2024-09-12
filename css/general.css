@@ -38,7 +38,14 @@ body {
 			border-width: 1px;
 		}
 	}
-
+	
+    svg {
+		color: white;
+		stroke: white;
+		background-color:black;
+		
+	}
+	
 	header {
 		margin-bottom: 0.5rem;
 	}
