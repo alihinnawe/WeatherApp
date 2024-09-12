@@ -20,27 +20,22 @@ body {
 		}
 
 		section.location {
-				input.country {
-					width:1.5rem};
-			{
+			input.country {
+				width: 1.5rem;
 			}
 		}
 		
 		section.weather-overview {
-				table>tbody {
-					td.temperature {
+			table>tbody {
+				td.temperature,td.visibility {
 					text-align: center;
-					};
-			
+				}
+				
+				td.rain,td.humidity,td.pressure {
+					text-align: right;
+				}
 			}
 		}		
-		section.weather-overview {
-					table>tbody {
-						td.rain,td.humidity,td.pressure {
-						text-align: right;
-						};
-				
-				}
-			}		
+	}
 	
 }

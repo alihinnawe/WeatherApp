@@ -1,5 +1,5 @@
 // Constants for OpenWeather API key and base URL
-const OPEN_WEATHER_APP_KEY = "your key";
+const OPEN_WEATHER_APP_KEY = "65d8e433543028fb83bd8709bebfad8f";
 const OPEN_WEATHER_APP_ORIGIN = "https://api.openweathermap.org";
 
 /**
@@ -70,16 +70,16 @@ async function processWeatherForecast () {
 					const rain = dayThreeHourForecasts.reduce((acc, element) => acc + (element.rain ? element.rain["3h"] : null),0);
 					const humidity = dayThreeHourForecasts.reduce((acc, element) => acc + element.main.humidity,0) / dayThreeHourForecasts.length;
 					const pressure = dayThreeHourForecasts.reduce((acc, element) => acc + element.main.pressure,0) / dayThreeHourForecasts.length;
-					const minVisibility = dayThreeHourForecasts.reduce((acc, element) => Math.min(acc, element.visibility), Infinity) ;
-					const maxVisibility = dayThreeHourForecasts.reduce((acc, element) => Math.max(acc, element.visibility), 0);
+					const minVisisbility = dayThreeHourForecasts.reduce((acc, element) => Math.min(acc, element.visibility), Infinity);
+					const maxVisisbility = dayThreeHourForecasts.reduce((acc, element) => Math.max(acc, element.visibility), 0);
+
 					// Update table row with date and temperature range
 					tableRow.querySelector("td.date>button").innerText = new Date(dayThreeHourForecasts[0].dt * 1000).toLocaleDateString();
 					tableRow.querySelector("td.temperature").innerText = Math.round(minTemperature) + "° - " + Math.round(maxTemperature) + "°"; 
 					tableRow.querySelector("td.rain").innerText = Math.round(rain).toString(); 
-					tableRow.querySelector("td.rain").innerText = Math.round(humidity).toString() + "%"; 
-					tableRow.querySelector("td.pressure").innerText = Math.round(pressure).toString() + "%"; 
-					tableRow.querySelector("td.visibility").innerText = Math.round(minVisibility) + "° - " + Math.round(maxVisibility) + "°"; 
-
+					tableRow.querySelector("td.humidity").innerText = Math.round(humidity).toString() + "%"; 
+					tableRow.querySelector("td.pressure").innerText = Math.round(humidity).toString();
+					tableRow.querySelector("td.visibility").innerText = Math.round(minVisisbility) + "m - " + Math.round(maxVisisbility) + "m"; 
 				}
 
 				// Start new forecast grouping
