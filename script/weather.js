@@ -80,6 +80,8 @@ async function processWeatherForecast () {
 					tableRow.querySelector("td.humidity").innerText = Math.round(humidity).toString() + "%"; 
 					tableRow.querySelector("td.pressure").innerText = Math.round(humidity).toString() + " hPa";
 					tableRow.querySelector("td.visibility").innerText = Math.round(minVisisbility) + " - " + Math.round(maxVisisbility); 
+					tableRow.querySelector("td.date>button").addEventListener("click", event => processDayWeatherForecast(dayThreeHourForecasts));
+
 				}
 
 				// Start new forecast grouping
@@ -99,6 +101,34 @@ async function processWeatherForecast () {
 		messageOutput.classList.add("failure");
 	}
 }
+
+
+/**
+ * Processes a detailed daily weather forecast.
+ * @param threeHoursForecast the three hours forecast für einem TAG.
+ */   
+async function processDayWeatherForecast (threeHourForcasts) {
+	// Get reference to the message output element
+	const messageOutput = document.querySelector("footer>input.message");
+	messageOutput.classList.remove("success", "failure");
+
+	try {
+		console.log("threeHourForcasts",threeHourForcasts);
+		// Update the message output to indicate success
+		messageOutput.value = "ok.";
+		messageOutput.classList.add("success");
+		const center = document.querySelector("article.center");
+		center.querySelector("section.location").classList.add("hidden");
+		center.querySelector("section.weather-overview").classList.add("hidden");
+
+		
+	} catch (error) { 
+		// Update the message output to indicate failure
+		messageOutput.value = error.message;
+		messageOutput.classList.add("failure");
+	}
+}
+
 
 /**
  * Fetches location data from the OpenWeather API based on city and country code.
