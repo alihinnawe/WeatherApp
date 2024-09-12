@@ -13,6 +13,10 @@
 
 body {
 	font-family: var(--normal-font-family);
+	
+	.hidden {
+		display: none;
+	}
 
 	h1,h2,h3,h4,h5,h6 {
 		color: var(--corporate-heavy-red);
@@ -35,8 +39,8 @@ body {
 		}
 	}
 
-	.hidden {
-		display: none;
+	header {
+		margin-bottom: 0.5rem;
 	}
 
 	main {
@@ -48,6 +52,10 @@ body {
 
 		article.center {
 			width: 100%;
+
+			section {
+				margin-bottom: 0.5rem;
+			}
 		}
 	}
 
