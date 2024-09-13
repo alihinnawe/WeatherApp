@@ -1,5 +1,5 @@
 // Constants for OpenWeather API key and base URL
-const OPEN_WEATHER_APP_KEY = "your key";
+const OPEN_WEATHER_APP_KEY = "65d8e433543028fb83bd8709bebfad8f";
 const OPEN_WEATHER_APP_ORIGIN = "https://api.openweathermap.org";
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
@@ -133,7 +133,7 @@ async function processDayWeatherForecast(date, threeHourForcasts) {
         for (let timeSlot = 0; timeSlot < threeHourForcasts.length; ++timeSlot) {
             const temperature = threeHourForcasts[timeSlot].main.temp - 273.15;
             
-            const circle = document.createElementNS(SVG_NAMESPACE, "circle"); // Corrected element type
+            const circle = document.createElementNS(SVG_NAMESPACE, "circle"); 
             circle.setAttributeNS(null, "cx", Math.floor(20 + timeSlot * timePixels));
             circle.setAttributeNS(null, "cy", Math.floor(120 - (temperature - lowerBoundTemperature) * degreePixels));
             circle.setAttributeNS(null, "r", 2);
