@@ -13,7 +13,7 @@
 
 body {
 	font-family: var(--normal-font-family);
-	
+
 	.hidden {
 		display: none;
 	}
@@ -38,14 +38,19 @@ body {
 			border-width: 1px;
 		}
 	}
-	
-    svg {
+
+	svg {
+		background-color: black;
 		color: white;
-		stroke: white;
-		background-color:black;
-		
+		font-family: monospaced;
+		font-size: 8px;
+
+		g.coordinates {
+			stroke: white;
+			fill: white;
+		}
 	}
-	
+
 	header {
 		margin-bottom: 0.5rem;
 	}
@@ -72,7 +77,7 @@ body {
 		}
 
 		input.message.failure {
-		color: red;
-		} 
+			color: red;
+		}
 	}
 }

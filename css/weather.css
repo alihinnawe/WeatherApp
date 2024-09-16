@@ -24,10 +24,9 @@ body {
 				width: 1.5rem;
 			}
 		}
-		
+
 		section.weather-overview {
 			table {
-				
 				th {
 					border-bottom-style: solid;
 					background-color: var(--corporate-light-red);
@@ -35,32 +34,67 @@ body {
 
 				th,td {
 					padding: 0px 2px;
-					
 				}
 
 				th:not(:first-of-type),td:not(:first-of-type) {
 					border-left-style: solid;
 				}
-				
+
 				td.temperature,td.visibility {
 					text-align: center;
 				}
-				
+
 				td.rain,td.humidity,td.pressure {
 					text-align: right;
 				}
 			}
-		}	
+		}
 
 		section.weather-details {
 			div.main {
-				label {
-					display:block;
+				input.country {
+					width: 1.5rem;
 				}
 			}
-	
-}
-		
+
+			div.data {
+				label {
+					display: block;
+				}
+
+				span>svg {
+					g.temp-range,g.gust-range {
+						stroke: blue;
+						fill: blue;
+					}
+
+					g.temp,g.wind {
+						stroke: yellow;
+						fill: yellow;
+					}
+				}
+			}
+
+			div.water,div.pressure {
+				table {
+					th {
+						border-bottom-style: solid;
+						background-color: var(--corporate-light-red);
+					}
+
+					th,td {
+						padding: 0px 2px;
+					}
+
+					th:not(:first-of-type),td:not(:first-of-type) {
+						border-left-style: solid;
+					}
+
+					td.rain,td.humidity,td.cloudiness,td.visibility,td.pressure {
+						text-align: right;
+					}
+				}
+			}
+		}
 	}
-	
 }

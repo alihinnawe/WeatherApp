@@ -11,10 +11,10 @@
 		<link rel="stylesheet" type="text/css" href="css/general.css" />
 		<link rel="stylesheet" type="text/css" href="css/weather.css" />
 		<script type="module" async="true" src="script/weather.js"></script>
-		
+
 		<template class="weather-overview">
 			<section class="weather-overview">
-				<div class="data"></div>
+				<div class="data">
 					<h1>Übersicht</h1>
 					<div class="table">
 						<table>
@@ -22,19 +22,19 @@
 								<tr>
 									<th>Datum</th>
 									<th>Temperatur</th>
-									<th>Regen</th>
+									<th>Niederschlag</th>
 									<th>Luftfeuchte</th>
 									<th>Luftdruck</th>
 									<th>Sicht (m)</th>
 								</tr>
 							</thead>
-							<tbody></tbody>  
+							<tbody></tbody>
 						</table>
 					</div>
-
+				</div>
 			</section>
 		</template>
-		
+
 		<template class="weather-overview-row">
 			<tr>
 				<td class="date"><button type="button"></button></td>
@@ -45,46 +45,108 @@
 				<td class="visibility"></td>
 			</tr>
 		</template>
-		
+
 		<template class="weather-details">
 			<section class="weather-details">
 				<div class="main">
-					<h1>Wettervorhersage für <output class="date"/></h1>
+					<h1>Wettervorhersage für <output class="date" /></h1>
 					<div>
-						<span class="temp">
-							<label>Temperatur (c)</label>
-							<svg height="140" width="340">
-								<line class="coord" x1="20" x2="20" y1="20" y2="120" />
-								<line  class="coord" x1="20" x2="25" y1="20" y2="25" />
-								<line  class="coord" x1="20" x2="15" y1="20" y2="25" />
-								<line  class="coord" x1="20" x2="320" y1="120" y2="120" />
-								<line  class="coord" x1="320" x2="315" y1="120" y2="115" />
-								<line  class="coord" x1="320" x2="315" y1="120" y2="125" />
-							</svg>
+						<span>
+							<label>Stadt</label>
+							<input type="text" class="city" readonly="true" />
 						</span>
 						<span>
-						<label>Temperatur (c)</label>
-							<svg height="140" width="340">
-								<line class="coord" x1="20" x2="20" y1="20" y2="120" />
-								<line  class="coord" x1="20" x2="25" y1="20" y2="25" />
-								<line  class="coord" x1="20" x2="15" y1="20" y2="25" />
-								<line  class="coord" x1="20" x2="320" y1="120" y2="120" />
-								<line  class="coord" x1="320" x2="315" y1="120" y2="115" />
-								<line  class="coord" x1="320" x2="315" y1="120" y2="125" />
-							</svg>
+							<label>Staat</label>
+							<input type="text" class="country" readonly="true" />
 						</span>
 					</div>
 				</div>
+				<div class="data">
+					<span class="temp">
+						<label>Temperatur (C)</label>
+						<svg height="140" width="340">
+							<g class="temp-range" />
+							<g class="coordinates">
+								<line x1="20" x2="20" y1="20" y2="120" />
+								<line x1="20" x2="25" y1="20" y2="25" />
+								<line x1="20" x2="15" y1="20" y2="25" />
+								<line x1="20" x2="320" y1="120" y2="120" />
+								<line x1="320" x2="315" y1="120" y2="115" />
+								<line x1="320" x2="315" y1="120" y2="125" />
+							</g>
+							<g class="temp" />
+						</svg>
+					</span>
+					<span class="wind">
+						<label>Windgeschwindigkeit (km/h)</label>
+						<svg height="140" width="340">
+							<g class="gust-range" />
+							<g class="coordinates">
+								<line x1="20" x2="20" y1="20" y2="120" />
+								<line x1="20" x2="25" y1="20" y2="25" />
+								<line x1="20" x2="15" y1="20" y2="25" />
+								<line x1="20" x2="320" y1="120" y2="120" />
+								<line x1="320" x2="315" y1="120" y2="115" />
+								<line x1="320" x2="315" y1="120" y2="125" />
+							</g>
+							<g class="wind" />
+						</svg>
+					</span>
+				</div>
+				<div class="water">
+					<table class="hidden">
+						<thead>
+							<tr>
+								<th>Zeit</th>
+								<th>Niederschlag</th>
+								<th>Luftfeuchtigkeit</th>
+								<th>Bewölkungsgrad</th>
+								<th>Sicht (m)</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+				<div class="pressure">
+					<table class="hidden">
+						<thead>
+							<tr>
+								<th>Zeit</th>
+								<th>Luftdruck</th>
+								<th>Luftdruck (Meereshöhe)</th>
+								<th>Luftdruck (Bodenhöhe)</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+				<div class="control">
+					<button type="button" class="toggle water">Wasser-Tabelle ein-/ausblenden</button>
+					<button type="button" class="toggle pressure">Luftdruck-Tabelle ein-/ausblenden</button>
+					<button type="button" class="back">zurück</button>
+				</div>
 			</section>
 		</template>
-		
-		<template class="weather-details">
-			<section class="weather-details">
-
-			</section>
-		</template>
-		
 	</head>
+
+	<template class="weather-details-water-row">
+		<tr>
+			<td class="time"></td>
+			<td class="rain"></td>
+			<td class="humidity"></td>
+			<td class="cloudiness"></td>
+			<td class="visibility"></td>
+		</tr>
+	</template>
+
+	<template class="weather-details-pressure-row">
+		<tr>
+			<td class="time"></td>
+			<td class="pressure main"></td>
+			<td class="pressure sea"></td>
+			<td class="pressure ground"></td>
+		</tr>
+	</template>
 
 	<body>
 		<header>
@@ -100,30 +162,24 @@
 						<h1>Suchkriterien</h1>
 						<span>
 							<label>Stadt</label>
-							<input type=""text" class="city" value="Berlin" />
+							<input type="text" class="city" value="Berlin" />
 						</span>
 						<span>
 							<label>Staat</label>
-							<input type=""text" class="country" value="DE" minlength="2" maxlength="2"/>
+							<input type="text" class="country" value="DE" minlength="2" maxlength="2" />
 						</span>
 						<span>
 							<button type="button" class="query">suchen</button>
 						</span>
-					
-					
-					
 					</div>
-
 				</section>
-				
-				
 			</article>
 			<article class="right hidden"></article>
 		</main>
 
 		<footer>
 			<label>Nachricht</label>
-			<input type="text" class="message" readonly="true"/>
+			<input type="text" class="message" readonly="true" />
 		</footer>
 	</body>
 </html>
