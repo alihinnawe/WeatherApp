@@ -1,5 +1,5 @@
 // Constants for OpenWeather API key and base URL
-const OPEN_WEATHER_APP_KEY = "65d8e433543028fb83bd8709bebfad8f";
+const OPEN_WEATHER_APP_KEY = "your key";
 const OPEN_WEATHER_APP_ORIGIN = "https://api.openweathermap.org";
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
