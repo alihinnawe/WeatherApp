@@ -1,5 +1,5 @@
 // Constants for OpenWeather API key and base URL
-const OPEN_WEATHER_APP_KEY = "your own key";
+const OPEN_WEATHER_APP_KEY = "65d8e433543028fb83bd8709bebfad8f";
 const OPEN_WEATHER_APP_ORIGIN = "https://api.openweathermap.org";
 const SVG_NAMESPACE = "http://www.w3.org/2000/svg";
 
@@ -32,9 +32,9 @@ async function processWeatherForecast() {
         
         // Fetch weather forecast data using the location coordinates
         const weatherForecast = await invokeQueryWeatherForecast(location.lat, location.lon);
-        console.log("weatherForecast", weatherForecast);
+        //console.log("weatherForecast", weatherForecast);
     
-        // Check if the weather overview section exists, if not, create it
+        // Check if the weather overview section exists, if not, create the template header for wether forecast. Example date, temperature, rain, humidity,pressure,visibility.
         let overviewSection = center.querySelector("section.weather-overview");
         if (!overviewSection) {
             const overviewSectionTemplate = document.querySelector("head>template.weather-overview");
@@ -49,18 +49,25 @@ async function processWeatherForecast() {
 
         // Initialize variables to group forecast data by date
         const dayForecast = { dateText: null, list: [] };
-        weatherForecast.list.push(null); // Add a sentinel value to process the last day
-        
+		//console.log("initial dayForecast",dayForecast)
+        weatherForecast.list.push(null); // Add a sentinel value to process the last day. if last day is null we stop the for loop
+        //console.log("weather forecase array push null at the end of the array",weatherForecast.list)
         // Process each three-hour forecast data
+		
         for (const threeHourForecast of weatherForecast.list) {
-            // Extract date from the forecast data
+			console.log("dayForcast array is:  ",dayForecast);
+			console.log("dayForcast threeHourForecast is:  ",threeHourForecast);
+            // Extract date from the forecast data for each array element consisting of 40 elements.
+			//console.log("threeHourForecast",threeHourForecast);
             const dateText = threeHourForecast
                 ? threeHourForecast.dt_txt.substring(0, threeHourForecast.dt_txt.indexOf(' '))
                 : null;
-
+			// initially dayForecast.dateText is null, which is true
             if (dayForecast.dateText !== dateText) {
+				console.log("check true is true");
                 // Process and display the previous day's forecast if available
                 if (dayForecast.dateText !== null) {
+					console.log("ali true");
                     const tableRow = tableRowTemplate.content.firstElementChild.cloneNode(true);
                     tableBody.append(tableRow);
 
@@ -85,13 +92,23 @@ async function processWeatherForecast() {
                     tableRow.querySelector("td.visibility").innerText = Math.round(minVisibility) + " - " + Math.round(maxVisibility);
                     dateButton.addEventListener("click", event => processDayWeatherForecast(date, dayThreeHourForecasts));
                 }
+                console.log("dayForecast.dateText",dayForecast.dateText);
+                console.log("dayForecast.list",dayForecast.list);
 
                 // Start new forecast grouping
                 dayForecast.dateText = dateText;
                 dayForecast.list = [];
+                console.log("dayForecast.dateText first iteration",dayForecast.dateText);
+                console.log("dayForecast.list first iteration ",dayForecast.list);
+
+				
             }
 
-            dayForecast.list.push(threeHourForecast);
+			dayForecast.list.push(threeHourForecast);
+			console.log("threeHourForecastthreeHourForecast",threeHourForecast)
+			console.log("dayForecast.list.push(threeHourForecast)",dayForecast.dateText,dayForecast.list);
+            //dayForecast.list.push(threeHourForecast);
+			//console.log("dayForecast.list.push(threeHourForecast)",dayForecast.dateText,dayForecast.list);
         }
 
         // Update the message output to indicate success
